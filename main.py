@@ -3,7 +3,7 @@ from pdb_gan.imports import *
 
 def main():
     def save(data: pd.DataFrame):
-        with open("data\parsed.pkl", "wb") as file:
+        with open("data/parsed.pkl", "wb") as file:
             pickle.dump(data, file)
 
     fetch = Fetch()
@@ -16,7 +16,7 @@ def main():
     parsed = fetch.parse_data(data=records, output={})
 
     try:
-        with open("data\parsed.pkl", "rb") as file:
+        with open("data/parsed.pkl", "rb") as file:
             temp = pickle.load(file)
 
         if len(temp) == len(parsed):

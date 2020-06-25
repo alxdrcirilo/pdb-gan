@@ -70,7 +70,7 @@ class Fetch:
             os.makedirs(temp_path)
 
         for angle in ["front", "side", "top"]:
-            path = temp_path + "\{}_{}.png".format(id, angle)
+            path = temp_path + "/{}_{}.png".format(id, angle)
             if not os.path.exists(path):
                 url = "https://www.ebi.ac.uk/pdbe/static/entry/{}_deposited_chain_{}_image-200x200.png".format(id,
                                                                                                                angle)
