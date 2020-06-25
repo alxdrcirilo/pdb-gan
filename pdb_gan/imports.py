@@ -22,4 +22,5 @@ import logging
 log = logging.getLogger("rich")
 logging.basicConfig(level="INFO", format="%(message)s", handlers=[RichHandler()])
 
-from pdb_gan.fetch import Fetch
+from pdb_gan.fetch import Fetcher
+from pdb_gan.preprocess import Preprocessor

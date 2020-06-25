@@ -1,7 +1,7 @@
 from pdb_gan.imports import *
 
 
-class Fetch:
+class Fetcher:
     def get_data(self, url: str, output: list):
         log.info("Fetching data...")
         flag = False
@@ -72,8 +72,8 @@ class Fetch:
         for angle in ["front", "side", "top"]:
             path = temp_path + "/{}_{}.png".format(id, angle)
             if not os.path.exists(path):
-                url = "https://www.ebi.ac.uk/pdbe/static/entry/{}_deposited_chain_{}_image-200x200.png".format(id,
-                                                                                                               angle)
+                url = "https://www.ebi.ac.uk/pdbe/static/entry/" \
+                      "{}_deposited_chain_{}_image-200x200.png".format(id, angle)
                 urllib.request.urlretrieve(url, path)
         self.progress.update(task_id=self.task, advance=1)
 
@@ -84,6 +84,34 @@ class Fetch:
             with ThreadPoolExecutor(max_workers=mp.cpu_count()) as executor:
                 for id in data.index:
                     executor.submit(self.download, id.lower())
+
+    def save(self, data: pd.DataFrame):
+        with open("data/parsed.pkl", "wb") as file:
+            pickle.dump(data, file)
+
+    def run(self):
+        path = "data"
+        if not os.path.exists(path):
+            os.makedirs(path)
+
+        records = self.get_data(url="https://www.uniprot.org/docs/pdbtosp.txt", output=[])
+        parsed = self.parse_data(data=records, output={})
+
+        try:
+            with open("data/parsed.pkl", "rb") as file:
+                temp = pickle.load(file)
+
+            if len(temp) == len(parsed):
+                log.info("Data is already up-to-date")
+            else:
+                self.save(data=parsed)
+
+        except FileNotFoundError:
+            log.info("Saving data...")
+            self.save(data=parsed)
+
+        self.get_methods(data=parsed)
+        self.download_snapshots(data=parsed)
 
     @staticmethod
     def get_methods(data: pd.DataFrame):
