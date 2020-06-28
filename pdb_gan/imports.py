@@ -1,5 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
-from random import choice
+import random
 from rich import print
 from rich.console import Console
 from rich.logging import RichHandler
@@ -12,11 +12,6 @@ import os
 import pandas as pd
 import pickle
 import urllib.request
-
-try:
-    os.remove("logger.log")
-except FileNotFoundError:
-    pass
 
 import logging
 log = logging.getLogger("rich")
