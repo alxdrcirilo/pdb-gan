@@ -2,7 +2,8 @@ from pdb_gan.imports import *
 
 
 class Fetcher:
-    def get_data(self, url: str, output: list):
+    @staticmethod
+    def get_data(url: str, output: list):
         log.info("Fetching data...")
         flag = False
         for line in urllib.request.urlopen(url):
@@ -21,7 +22,8 @@ class Fetcher:
 
         return output
 
-    def parse_data(self, data: list, output: dict):
+    @staticmethod
+    def parse_data(data: list, output: dict):
         log.info("Parsing data...")
         tmp = []
         for line in data:
@@ -31,7 +33,7 @@ class Fetcher:
                 for char in raw_chars:
                     try:
                         line.remove(char)
-                    except:
+                    except ValueError:
                         pass
 
             try:
