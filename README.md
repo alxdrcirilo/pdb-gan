@@ -9,7 +9,7 @@ Two formats of the dataset are available based on the size (in pixels: 28x28 and
 
 Visualization of a few entries in the dataset in RGB format with 28x28 arrays for each entry:
 
-<img src="https://raw.githubusercontent.com/alxdrcirilo/pdb-gan/master/imgs/rgb_28x28.png" width="650">
+<img src="https://raw.githubusercontent.com/alxdrcirilo/pdb-gan/master/imgs/rgb.png" width="650">
 
 
 ## Contributing
