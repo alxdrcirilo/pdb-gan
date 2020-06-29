@@ -15,6 +15,3 @@ Visualization of a few entries in the dataset in RGB format with 28x28 arrays fo
 ## Contributing
 
 Feedback and constructive criticism is welcome: [a.dias.cirilo@umail.leidenuniv.nl](mailto:a.dias.cirilo@umail.leidenuniv.nl).
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
